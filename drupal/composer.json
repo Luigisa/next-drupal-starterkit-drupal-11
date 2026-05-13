@@ -137,9 +137,6 @@
             "drupal/subrequests": {
                 "#3049395-58 - Page Cache causes different subrequests to return the same responses": "https://www.drupal.org/files/issues/2024-08-06/subrequests-3049395-change-request-type.patch"
             },
-            "drupal/decoupled_router": {
-                "#3111456-78 - Unable to resolve path on node in other language than default": "https://www.drupal.org/files/issues/2024-10-22/decoupled_router-3111456-resolve-langcode-issue-78--external-redirects.patch"
-            },
             "drupal/paragraphs": {
                 "Paragraphs (stable) title from form options not being applied (issue #3401581)": "https://www.drupal.org/files/issues/2023-11-14/paragraphs-custom-title-not-displayed-3401581-2.patch"
             },

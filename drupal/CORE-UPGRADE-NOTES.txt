@@ -9,7 +9,12 @@ Snapshot DDEV previo al cambio (restauración local):
 
 Parches Composer:
   - Eliminado el parche drupal/core #3002532 (language / recipe): el cambio ya está incluido en ConfigurableLanguageManager::updateLockedLanguageWeights() en 10.6.8.
-  - Restantes sin cambios: subrequests, decoupled_router, paragraphs, graphql (GitHub), webform_rest.
+  - Eliminado el parche drupal/decoupled_router #3111456 (oct 2024): el código equivalente viene en decoupled_router 2.0.6 upstream; el parche ya no aplica y no es necesario.
+  - Restantes: subrequests, paragraphs, graphql (GitHub), webform_rest.
+
+Actualización masiva módulos contrib (composer update drupal/*):
+  - Incluye entre otros: admin_toolbar 3.6.3, graphql 4.14, graphql_compose 2.4.1, next 2.1.0, consumers 1.24, pathauto 1.15, redirect 1.13, elasticsearch client 8.19, etc.
+  - Tras next 2.1: revisar CORS si el front hace peticiones desde el navegador (next_post_update_remove_automatic_cors); ver CORS.md del módulo next.
 
 Base de datos:
   - Ejecutado system_update_10600 (equivalente a actualización de rama 11.x documentada en core).
@@ -18,6 +23,6 @@ Deuda / preparación Drupal 11:
   - Perfil basic (web/profiles/custom/basic): core_version_requirement ^9 y dependencias legacy (ckeditor, bartik, seven); revisar antes de D11.
   - Módulos custom: ampliar core_version_requirement a ^10 || ^11 cuando se aborde D11.
   - PHP: proyecto >=8.2; Drupal 11 requerirá revisar mínimo (típicamente 8.3+). DDEV local ya usa PHP 8.3.
-  - composer audit (advisories conocidos en el momento del upgrade): drupal/next (SA-CONTRIB-2025-122 / CVE-2025-13984; versiones afectadas <1.6.4 o >=2 <2.0.1 — valorar bump de next); webonyx/graphql-php (varios advisories; resolver vía graphql/graphql o restricción de versión cuando haya release compatible).
+  - composer audit: webonyx/graphql-php 14.x tiene advisories PKSA; subir a graphql-php 15.x requiere que drupal/graphql lo permita en una release futura, o revisar config audit en Composer.
 
 Rama sugerida para estos cambios: drupal-10-latest
