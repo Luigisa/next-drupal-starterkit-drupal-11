@@ -19,6 +19,7 @@
         "composer/installers": "^2.1",
         "cweagans/composer-patches": "^1.7",
         "drupal/admin_toolbar": "^3.5",
+        "drupal/canvas": "^1.4",
         "drupal/consumers": "^1.19",
         "drupal/core-composer-scaffold": "^11",
         "drupal/core-recommended": "^11",
@@ -41,7 +42,7 @@
         "drupal/registration_role": "^2.0",
         "drupal/require_login": "^3.0",
         "drupal/restui": "^1.21",
-        "drupal/same_page_preview": "^2.1",
+        "drupal/same_page_preview": "^3.0@RC",
         "drupal/simple_oauth": "^6",
         "drupal/simplei": "^3.0",
         "drupal/subrequests": "^3.0",
@@ -145,6 +146,9 @@
             },
             "drupal/graphql" : {
                 "drupal-graphql#1323: Add check for translation (from Github)": "https://patch-diff.githubusercontent.com/raw/drupal-graphql/graphql/pull/1388.patch"
+            },
+            "drupal/same_page_preview": {
+                "#3579320: Avoid duplicate preprocess_html (OOH + .module) on Drupal 11": "patches/same_page_preview-3579320-dedupe-procedural-hooks.patch"
             }
         },
         "dropin-paths": {

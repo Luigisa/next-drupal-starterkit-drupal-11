@@ -30,3 +30,26 @@
   }
 }
 
+/**
+ * Same Page Preview (off-canvas): el reset de core aplica `all: revert` a todos
+ * los descendientes de #drupal-off-canvas-wrapper y rompe el flex del panel y
+ * el iframe de vista previa.
+ *
+ * @see core/misc/dialog/off-canvas/css/reset.pcss.css
+ */
+#drupal-off-canvas-wrapper.same-page-preview-dialog .preview-pane {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+#drupal-off-canvas-wrapper.same-page-preview-dialog iframe.preview {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  box-sizing: border-box;
+  border-width: 0;
+  display: block;
+}
+

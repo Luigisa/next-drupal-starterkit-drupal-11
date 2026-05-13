@@ -1,0 +1,23 @@
+uuid: 9d1f5b2c-3e4a-5f6b-0c1d-2e3f4a5b6c7d
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.next_api_viewer_role
+  module:
+    - simple_oauth
+id: next_api_viewer_role
+name: next_api_viewer_role
+description: 'API Viewer'
+grant_types:
+  authorization_code:
+    status: true
+  client_credentials:
+    status: true
+  refresh_token:
+    status: true
+umbrella: false
+parent: null
+granularity_id: role
+granularity_configuration:
+  role: next_api_viewer_role

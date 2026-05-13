@@ -1,0 +1,187 @@
+--- a/same_page_preview.module	2026-05-13 16:39:00
++++ b/same_page_preview.module
+@@ -2,176 +2,21 @@
+ 
+ /**
+  * @file
+- * Same Page Preview module - backward compatibility for Drupal 10.3-11.0.
+- * 
+- * For Drupal 11.1+ all functionality is handled by Object-Oriented Hooks 
+- * in src/Hook/SamePagePreviewHooks.php
++ * Same Page Preview — procedural hooks kept only where OOH cannot replace them.
++ *
++ * Drupal 11.1+ registers #[Hook] methods in SamePagePreviewHooks; procedural
++ * hook_* functions with the same name would be registered twice and trigger
++ * LogicException (see https://www.drupal.org/project/same_page_preview/issues/3579320).
++ *
++ * Backward compatibility for Drupal 10 without OOH is unchanged in upstream
++ * releases; this file is trimmed for Drupal 11-only sites via Composer patch.
+  */
+ 
+-use Drupal\Component\Serialization\Json;
+ use Drupal\Core\Entity\EntityInterface;
+ use Drupal\Core\Form\FormStateInterface;
+-use Drupal\Core\Url;
+ use Drupal\node\Entity\Node;
+ 
+ /**
+- * Check if Object Oriented Hooks are supported and should be used.
+- *
+- * @return bool
+- *   TRUE if OOH is supported, FALSE for procedural fallback.
+- */
+-function _same_page_preview_use_ooh(): bool {
+-  return version_compare(\Drupal::VERSION, '11.1', '>=') && class_exists('\Drupal\Core\Hook\Attribute\Hook');
+-}
+-
+-// == Drupal 10.3-11.0 Backward Compatibility Hooks ==
+-//
+-// The following hooks provide backward compatibility for older Drupal versions.
+-// For Drupal 11.1+ these are all handled by Object-Oriented Hooks in 
+-// src/Hook/SamePagePreviewHooks.php
+-
+-/**
+- * Implements hook_preprocess_html().
+- */
+-function same_page_preview_preprocess_html(&$variables) {
+-  if (_same_page_preview_use_ooh()) {
+-    return; // OOH handles this
+-  }
+-
+-  $preview_service = \Drupal::service('same_page_preview.preview_service');
+-  if ($preview_service->hasAccessPermission() && $preview_service->isPreviewMode()) {
+-    $route_name = $preview_service->getCurrentRouteName();
+-    if ($route_name === 'entity.node.preview') {
+-      // Remove admin toolbar (legacy) and Navigation module toolbar (Drupal
+-      // 10.3+) to prevent admin chrome from leaking into the preview iframe.
+-      unset($variables['page_top']['toolbar']);
+-      unset($variables['page_top']['navigation']);
+-      unset($variables['page_top']['top_bar']);
+-      if (isset($variables["page"]["#attached"]["library"])) {
+-        $variables["page"]["#attached"]["library"] = array_values(array_diff($variables["page"]["#attached"]["library"], ['contextual/drupal.contextual-links']));
+-      }
+-    }
+-    $variables['#attached']['library'][] = 'same_page_preview/new_window_preview';
+-  }
+-}
+-
+-/**
+- * Implements hook_page_top().
+- */
+-function same_page_preview_page_top(array &$page) {
+-  if (_same_page_preview_use_ooh()) {
+-    return; // OOH handles this
+-  }
+-
+-  $preview_service = \Drupal::service('same_page_preview.preview_service');
+-  if ($preview_service->hasAccessPermission() && $preview_service->isPreviewMode()) {
+-    $route_name = $preview_service->getCurrentRouteName();
+-    if ($route_name === 'entity.node.preview') {
+-      unset($page['node_preview']['view_mode']);
+-    }
+-  }
+-}
+-
+-/**
+- * Implements hook_entity_type_alter().
+- */
+-function same_page_preview_entity_type_alter(array &$entity_types) {
+-  if (_same_page_preview_use_ooh()) {
+-    return; // OOH handles this
+-  }
+-
+-  if (isset($entity_types['node'])) {
+-    $entity_types['node']->setFormClass('default', 'Drupal\same_page_preview\Form\PreviewNodeForm');
+-    $entity_types['node']->setFormClass('edit', 'Drupal\same_page_preview\Form\PreviewNodeForm');
+-    $entity_types['node']->setFormClass('add', 'Drupal\same_page_preview\Form\PreviewNodeForm');
+-  }
+-}
+-
+-/**
+- * Implements hook_form_node_form_alter().
+- */
+-function same_page_preview_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+-  if (_same_page_preview_use_ooh()) {
+-    return; // OOH handles this
+-  }
+-
+-  $preview_service = \Drupal::service('same_page_preview.preview_service');
+-  if ($preview_service->hasAccessPermission() && $preview_service->accessContentTypePermission()) {
+-    $node = $form_state->getFormObject()->getEntity();
+-    $form["#attributes"]["class"][] = "with-preview";
+-    $preview_service->compilePreview($node, $form_state);
+-
+-    $route_parameters = [
+-      'node_preview' => $node->uuid(),
+-      'view_mode_id' => 'full',
+-    ];
+-
+-    $form['toggle_preview_link'] = [
+-      '#type' => 'link',
+-      '#title' => t('Launch preview'),
+-      '#url' => Url::fromRoute('same_page_preview.preview_pane', $route_parameters),
+-      '#attributes' => [
+-        'style' => 'display: none;',
+-        'class' => ['use-ajax', 'button', 'button--primary', 'visually-hidden'],
+-        'data-dialog-type' => 'dialog',
+-        'data-dialog-renderer' => 'off_canvas',
+-        'data-dialog-options' => Json::encode([
+-          'width' => '50%',
+-          'resizable' => FALSE,
+-          'classes' => ['ui-dialog' => 'same-page-preview-dialog'],
+-        ]),
+-      ],
+-      '#attached' => ['library' => ['core/drupal.dialog.ajax']],
+-    ];
+-
+-    $form['ssp_preview_enabled'] = [
+-      '#type' => 'hidden',
+-      '#value' => $preview_service->accessContentTypePermission() ? 1 : 0,
+-    ];
+-
+-    $form['#attached']['library'][] = 'same_page_preview/same_page_preview';
+-    $preview_service->registerFieldsAutoRefresh($form, $form_state, $node);
+-  }
+-}
+-
+-/**
+- * Implements hook_form_node_type_edit_form_alter().
+- */
+-function same_page_preview_form_node_type_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+-  if (_same_page_preview_use_ooh()) {
+-    return; // OOH handles this
+-  }
+-
+-  $node_type = $form_state->getFormObject()->getEntity();
+-  $preview_before_submitting_not_disabled = [
+-    [':input[name="preview_mode"]' => ['value' => '1']],
+-    [':input[name="preview_mode"]' => ['value' => '2']],
+-  ];
+-  $form['submission']['same_page_preview_toggle'] = [
+-    '#type' => 'checkbox',
+-    '#title' => t('Enable Same Page Preview'),
+-    '#default_value' => $form_state->getValue('same_page_preview', $node_type->getThirdPartySetting('same_page_preview', 'same_page_preview_toggle', TRUE)),
+-    '#description' => t('Allow advanced preview feature for this content type.'),
+-    '#states' => ['visible' => $preview_before_submitting_not_disabled],
+-  ];
+-  $form['actions']['submit']['#submit'][] = 'same_page_preview_form_node_type_edit_form_submit';
+-}
+-
+-/**
+- * Form submission handler for node type edit form.
+- */
+-function same_page_preview_form_node_type_edit_form_submit($form, FormStateInterface $form_state) {
+-  if (_same_page_preview_use_ooh()) {
+-    return; // OOH handles this
+-  }
+-
+-  $node_type = $form_state->getFormObject()->getEntity();
+-  $toggle = $form_state->getValue('preview_mode') != '0' && $form_state->getValue('same_page_preview_toggle') != FALSE;
+-  $node_type->setThirdPartySetting('same_page_preview', 'active', $toggle);
+-  $node_type->save();
+-}
+-
+-/**
+  * Implements hook_module_implements_alter().
+  *
+  * NOTE: hook_module_implements_alter() cannot be registered via the #[Hook]

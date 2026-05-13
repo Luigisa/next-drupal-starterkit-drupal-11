@@ -4,10 +4,13 @@ status: true
 dependencies:
   module:
     - menu_ui
+    - same_page_preview
 third_party_settings:
   menu_ui:
     available_menus: {  }
     parent: ''
+  same_page_preview:
+    active: true
 _core:
   default_config_hash: D1jJcq9Tn9-8NVfaaPreo_E5tDWoonsry-sIMB1w0pA
 name: Frontpage

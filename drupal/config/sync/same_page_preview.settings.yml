@@ -1,4 +1,4 @@
 _core:
   default_config_hash: j7tV3UxSvuE9pifAR80xAqZMfqdyX4LVCzIgTE9onGw
-preview_on_by_default: 1
 langcode: en
+preview_on_by_default: true

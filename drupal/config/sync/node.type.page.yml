@@ -4,11 +4,14 @@ status: true
 dependencies:
   module:
     - menu_ui
+    - same_page_preview
 third_party_settings:
   menu_ui:
     available_menus:
       - main
     parent: 'main:'
+  same_page_preview:
+    active: true
 _core:
   default_config_hash: FMXIKsTMG9l8hjxbEfobrG65wPw4KVtdx7T7dMw42zc
 name: Page

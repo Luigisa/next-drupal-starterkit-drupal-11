@@ -95,9 +95,17 @@ function wunder_next_ckeditor5_plugin_info_alter(array &$plugin_definitions): vo
  * Implements hook_simple_oauth_private_claims_alter().
  */
 function wunder_next_simple_oauth_private_claims_alter(&$private_claims, AccessTokenEntity $access_token_entity) {
-  // Get the user id:
+  // Password and other user-bound grants set a user id. Client credentials does
+  // not, and User::load(NULL) triggers an assertion — leave default private claims.
   $user_id = $access_token_entity->getUserIdentifier();
+  if ($user_id === NULL || $user_id === '') {
+    return;
+  }
+
   $user = User::load($user_id);
+  if (!$user) {
+    return;
+  }
 
   // Add the email and the username to the claims.
   $private_claims = [

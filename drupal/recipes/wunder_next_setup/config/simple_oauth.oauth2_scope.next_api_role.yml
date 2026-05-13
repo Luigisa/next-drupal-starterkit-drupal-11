@@ -1,0 +1,23 @@
+uuid: 8c0e4a1b-2d3f-4e5a-9b0c-1d2e3f4a5b6c
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.next_api_role
+  module:
+    - simple_oauth
+id: next_api_role
+name: next_api_role
+description: 'API Previewer'
+grant_types:
+  authorization_code:
+    status: true
+  client_credentials:
+    status: true
+  refresh_token:
+    status: true
+umbrella: false
+parent: null
+granularity_id: role
+granularity_configuration:
+  role: next_api_role

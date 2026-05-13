@@ -150,11 +150,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              next_api_role: '0'
-              wunder_content_editor: '0'
-              frontend_login: '0'
             reduce: false
           is_grouped: false
           group_info:
