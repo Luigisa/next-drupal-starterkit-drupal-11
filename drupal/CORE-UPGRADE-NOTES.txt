@@ -1,0 +1,23 @@
+Actualización Drupal 10.x (mayo 2026)
+=====================================
+
+Versión final core: 10.6.8 (core-recommended, scaffold, core-dev alineados).
+Drush: 13.7.3.
+
+Snapshot DDEV previo al cambio (restauración local):
+  ddev snapshot restore next-starterkit-pre-d10-core-2026-05-13
+
+Parches Composer:
+  - Eliminado el parche drupal/core #3002532 (language / recipe): el cambio ya está incluido en ConfigurableLanguageManager::updateLockedLanguageWeights() en 10.6.8.
+  - Restantes sin cambios: subrequests, decoupled_router, paragraphs, graphql (GitHub), webform_rest.
+
+Base de datos:
+  - Ejecutado system_update_10600 (equivalente a actualización de rama 11.x documentada en core).
+
+Deuda / preparación Drupal 11:
+  - Perfil basic (web/profiles/custom/basic): core_version_requirement ^9 y dependencias legacy (ckeditor, bartik, seven); revisar antes de D11.
+  - Módulos custom: ampliar core_version_requirement a ^10 || ^11 cuando se aborde D11.
+  - PHP: proyecto >=8.2; Drupal 11 requerirá revisar mínimo (típicamente 8.3+). DDEV local ya usa PHP 8.3.
+  - composer audit (advisories conocidos en el momento del upgrade): drupal/next (SA-CONTRIB-2025-122 / CVE-2025-13984; versiones afectadas <1.6.4 o >=2 <2.0.1 — valorar bump de next); webonyx/graphql-php (varios advisories; resolver vía graphql/graphql o restricción de versión cuando haya release compatible).
+
+Rama sugerida para estos cambios: drupal-10-latest

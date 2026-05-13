@@ -146,9 +146,6 @@
             "drupal/graphql" : {
                 "drupal-graphql#1323: Add check for translation (from Github)": "https://patch-diff.githubusercontent.com/raw/drupal-graphql/graphql/pull/1388.patch"
             },
-            "drupal/core": {
-                "Fix error when enabling the language module via recipe": "https://www.drupal.org/files/issues/2019-11-19/drupal.8.8.x-3002532-20.patch"
-            },
             "drupal/webform_rest": {
                 "Fix fetching a webform submission by UUID": "https://www.drupal.org/files/issues/2024-01-17/webform_rest-Error-membe-%20function-replace-3415211-02.patch"
             }
