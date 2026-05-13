@@ -2,6 +2,8 @@ uuid: ae24d21f-bdc6-4577-a1c0-6fd38e11b079
 langcode: en
 status: true
 dependencies:
+  config:
+    - node.type.article
   module:
     - node
 _core:
@@ -9,12 +11,11 @@ _core:
 id: article
 label: Article
 type: 'canonical_entities:node'
-pattern: 'articles/[node:title]'
+pattern: '/articles/[node:title]'
 selection_criteria:
   a9b68e06-b00d-415a-8216-9f2c6eb0e4ba:
     id: 'entity_bundle:node'
     negate: false
-    uuid: a9b68e06-b00d-415a-8216-9f2c6eb0e4ba
     context_mapping:
       node: node
     bundles:

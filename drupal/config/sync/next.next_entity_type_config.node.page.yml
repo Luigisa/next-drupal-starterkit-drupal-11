@@ -1,7 +1,9 @@
 uuid: 81b4fa9d-a683-497a-9f34-97333bce314e
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - node.type.page
 _core:
   default_config_hash: RCsADUWY9Q_wIPoYBTow7gfmzpI8wPvsDt5HT-lwzIM
 id: node.page
@@ -10,6 +12,7 @@ configuration:
   sites:
     frontend: frontend
   field_name: {  }
+draft_enabled: true
 revalidator: path
 revalidator_configuration:
   revalidate_page: true
