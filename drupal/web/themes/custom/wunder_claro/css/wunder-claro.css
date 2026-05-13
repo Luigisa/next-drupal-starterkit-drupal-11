@@ -9,3 +9,24 @@
 :root {
   /* --wunder-claro-accent: #0d77b6; */
 }
+
+/**
+ * Vista previa de nodo (ruta entity.node.preview, p. ej. /node/preview/…/full).
+ * Sin márgenes ni relleno en el contenedor principal del contenido.
+ */
+.layout-container.layout-container--node-preview,
+.layout-container.layout-container--node-preview .page-content {
+  margin: 0;
+  padding: 0;
+  max-width: none;
+}
+
+/* Anula márgenes laterales de toolbar/Claro (mayor especificidad que la regla base). */
+@media screen and (min-width: 38em) {
+  .toolbar-tray-open:not(.toolbar-vertical) .layout-container.layout-container--node-preview,
+  body:not(.toolbar-tray-open) .layout-container.layout-container--node-preview {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+

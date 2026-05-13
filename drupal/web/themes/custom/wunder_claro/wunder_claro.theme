@@ -6,3 +6,11 @@
  */
 
 declare(strict_types=1);
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function wunder_claro_preprocess_page(array &$variables): void {
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  $variables['is_node_preview'] = $route_name === 'entity.node.preview';
+}
