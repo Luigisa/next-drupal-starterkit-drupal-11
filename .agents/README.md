@@ -13,6 +13,7 @@ An MCP server that gives AI agents tools to run commands in DDEV containers via 
 ## How to Use
 
 1. **Installation:**
+
    ```bash
    cd /path/to/ddev-project
    ddev get wunderio/ddev-agents
@@ -29,6 +30,12 @@ An MCP server that gives AI agents tools to run commands in DDEV containers via 
    - Open VS Code Copilot chat
    - Use tools like `drush`, `composer_install`, `logs_nginx_access`, etc.
    - All tools connect via SSH automatically
+  
+4. **Updating:**
+   Restart of the wdrcmp server is needed to refresh the available tools. For example when:
+   - Adding .env file
+   - Changing the tool configs
+   - Adding a new MCP tool through Drupal MCP
 
 ## How SSH Works
 
@@ -101,6 +108,7 @@ This file is preserved across addon reinstalls (non-destructive merge).
 ## Available Tool Types
 
 - `command` – Run shell commands with parameter substitution
+- `check` – Run checks and tests with parameter substitution
 - `mcp_server` – Proxy to additional MCP servers
 
 ### Command Tool Type
@@ -118,6 +126,45 @@ tools:
     command_template: "my_command {name} {args}"
     ssh_target: "web"
     working_dir: "/var/www/html"
+    default_args:
+      args: []
+
+    input_schema:
+      type: object
+      properties:
+        name:
+          type: string
+          description: "Name argument"
+        args:
+          type: array
+          items:
+            type: string
+          description: "Flags and options as separate array elements"
+      required:
+        - name
+```
+
+### Check Tool Type
+
+Check tools execute shell commands like the Command tools (above), but provide
+proper feedback to agents when the checks or tests being run use non-zero
+exit codes to signal that the checks/tests did not pass.
+
+Example:
+
+```yaml
+tools:
+  - name: my_tests_tool
+    type: check
+    enabled: true
+    description: "Run my custom tests"
+    command_template: "my_custom_tests {name} {args}"
+    ssh_target: "web"
+    working_dir: "/var/www/html"
+    # Set to true if you need to bootstrap Drupal (for e.g. drush).
+    use_env_vars_in_remote: false
+    # Exit codes to interpret as the command succeeding, but the checks failing.
+    success_exit_codes: [1, 2]
     default_args:
       args: []
 

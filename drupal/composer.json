@@ -41,6 +41,7 @@
         "drupal/registration_role": "^2.0",
         "drupal/require_login": "^3.0",
         "drupal/restui": "^1.21",
+        "drupal/same_page_preview": "^2.1",
         "drupal/simple_oauth": "^5.2",
         "drupal/simplei": "^2.0@beta",
         "drupal/subrequests": "^3.0",

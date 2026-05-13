@@ -9,6 +9,31 @@ set -e
 
 echo "🔨 Building devcontainer image..."
 
+echo "⌛️ Checking for required tools..."
+
+if ! command -v jq &> /dev/null; then
+    echo "❌ jq CLI not found. Please install jq first."
+    exit 1
+fi
+
+if ! command -v npm &> /dev/null; then
+    echo "❌ npm CLI not found. Please install Node.js and npm first."
+    exit 1
+fi
+
+# Check node version for devcontainer CLI compatibility:
+HOST_NODE_VERSION=$(node -v 2>/dev/null || echo "v0.0.0")
+HOST_NODE_VERSION="${HOST_NODE_VERSION#v}"
+echo "📍 Host Node.js version: $HOST_NODE_VERSION"
+REQUIRED_NODE_MAJOR=20
+HOST_NODE_MAJOR=$(echo "$HOST_NODE_VERSION" | cut -d. -f1)
+if [ "$HOST_NODE_MAJOR" -lt "$REQUIRED_NODE_MAJOR" ]; then
+    echo "❌ Node.js version $HOST_NODE_VERSION is not supported. Please install Node.js v${REQUIRED_NODE_MAJOR}.0.0 or higher."
+    exit 1
+fi
+
+echo "✅ All required tools are available."
+
 # Navigate to project root
 PROJECT_ROOT="$(cd "$(dirname "$0")/../../.." && pwd)"
 cd "$PROJECT_ROOT"

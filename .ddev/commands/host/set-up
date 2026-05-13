@@ -10,6 +10,8 @@ set -e
 PROJECT_ROOT="$(cd "$(dirname "$0")/../../.." && pwd)"
 cd "$PROJECT_ROOT"
 
+PROJECT_LOCALE="en_US.utf8"
+
 # Determine project name
 if [ -z "$DDEV_PROJECT" ]; then
     DDEV_PROJECT=$(ddev describe -j 2>/dev/null | jq -r '.raw.name' 2>/dev/null || echo "ddev-agents")
@@ -102,8 +104,9 @@ echo "🔐 Setting up SSH connectivity between agents and web containers..."
 if ! docker ps --format '{{.Names}}' | grep -q "^${WEB_CONTAINER}$"; then
     echo "⚠️  Web container not running, skipping SSH setup."
 else
-    # Detect DDEV user from web container
-    DDEV_USER=$(docker exec "$WEB_CONTAINER" stat -c '%U' /var/www/html 2>/dev/null || echo "")
+    # Detect DDEV user from the container's configured UID (set by DDEV in docker-compose)
+    CONTAINER_UID=$(docker inspect --format '{{.Config.User}}' "$WEB_CONTAINER" 2>/dev/null | cut -d: -f1)
+    DDEV_USER=$(docker exec "$WEB_CONTAINER" getent passwd "$CONTAINER_UID" 2>/dev/null | cut -d: -f1)
     if [ -z "$DDEV_USER" ]; then
         echo "⚠️  Could not detect DDEV user, skipping SSH setup."
     else
@@ -156,6 +159,15 @@ SSHCONFIG
             grep -q 'export DDEV_SSH_USER=' ~/.zshrc 2>/dev/null || echo 'export DDEV_SSH_USER=$DDEV_USER' >> ~/.zshrc
         "
         echo "✅ DDEV_SSH_USER=$DDEV_USER set in agents container shell configs"
+
+        # Set locale in agents container for MCP tool configs
+        docker exec -i -u vscode "$AGENTS_CONTAINER" bash -c "
+            grep -q 'export LANG=' ~/.bashrc 2>/dev/null || echo 'export LANG=$PROJECT_LOCALE' >> ~/.bashrc
+            grep -q 'export LANG=' ~/.zshrc 2>/dev/null || echo 'export LANG=$PROJECT_LOCALE' >> ~/.zshrc
+            grep -q 'export LC_ALL=' ~/.bashrc 2>/dev/null || echo 'export LC_ALL=$PROJECT_LOCALE' >> ~/.bashrc
+            grep -q 'export LC_ALL=' ~/.zshrc 2>/dev/null || echo 'export LC_ALL=$PROJECT_LOCALE' >> ~/.zshrc
+        "
+        echo "✅ LANG=$PROJECT_LOCALE, LC_ALL=$PROJECT_LOCALE set in agents container shell configs"
 
         # Clean up temp keypair from host
         rm -rf "$SSH_TMPDIR"

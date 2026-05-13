@@ -1,0 +1,20 @@
+name: 'Wunder Claro'
+type: theme
+description: 'Subtema de Claro para personalizar plantillas, CSS y JS del backend sin tocar el núcleo.'
+core_version_requirement: ^10 || ^11
+base theme: claro
+libraries:
+  - wunder_claro/custom
+
+regions:
+  header: Header
+  pre_content: Pre-content
+  breadcrumb: Breadcrumb
+  highlighted: Highlighted
+  help: Help
+  content: Content
+  page_top: Page top
+  page_bottom: Page bottom
+  sidebar_first: First sidebar
+regions_hidden:
+  - sidebar_first

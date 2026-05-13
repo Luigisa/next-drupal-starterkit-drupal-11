@@ -36,6 +36,8 @@ services:
     labels:
       com.ddev.site-name: ${DDEV_PROJECT}
       com.ddev.app-type: agents
+    x-ddev:
+      ssh-shell: zsh
 
 volumes:
   copilot-state:

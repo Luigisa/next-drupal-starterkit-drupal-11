@@ -8,7 +8,7 @@
     "WQS_MCP_API_KEY": "${localEnv:WQS_MCP_API_KEY}",
     "SSH_AUTH_SOCK": ""
   },
-  "name": "Agents: next-drupal-starterkit",
+  "name": "Agents: __PROJECT_NAME__",
   "dockerComposeFile": [
     "../.ddev/.ddev-docker-compose-full.yaml"
   ],
@@ -17,10 +17,10 @@
   "shutdownAction": "none",
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
-      "version": "20"
+      "version": "__NODE_VERSION__"
     },
-    "ghcr.io/devcontainers/features/php:1": {
-      "version": "8.3",
+    "ghcr.io/shyim/devcontainers-features/php:latest": {
+      "version": "__PHP_VERSION__",
       "installComposer": true
     },
     "ghcr.io/devcontainers/features/github-cli:1": {
@@ -31,7 +31,8 @@
     "ghcr.io/devcontainers/features/common-utils:2": {
       "installZsh": true,
       "configureZshAsDefaultShell": true
-    }
+    },
+    "ghcr.io/devcontainers-extra/features/ripgrep:1": {}
   },
   "customizations": {
     "vscode": {

@@ -1,0 +1,8 @@
+<?php
+
+/**
+ * @file
+ * PHP del tema Wunder Claro (preprocess, sugerencias de plantilla, etc.).
+ */
+
+declare(strict_types=1);
