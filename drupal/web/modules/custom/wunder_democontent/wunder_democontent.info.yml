@@ -1,7 +1,7 @@
 name: 'Wunder next-drupal-starterkit template demo content'
 type: module
 description: 'Module containing migrations to populate a website with content matching the next-drupal-starterkit template.'
-core_version_requirement: ^9 || ^10
+core_version_requirement: ^10 || ^11
 dependencies:
   - migrate:migrate
   - migrate_plus:migrate_plus

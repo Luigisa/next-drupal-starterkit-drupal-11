@@ -2,7 +2,7 @@ name: 'Wunder Sitemap'
 type: module
 description: 'Additional functionality to generate the sitemap for a decoupled site.'
 package: Trimble
-core_version_requirement: ^9 || ^10
+core_version_requirement: ^10 || ^11
 dependencies:
   - simple_sitemap:simple_sitemap
   - drupal:file
