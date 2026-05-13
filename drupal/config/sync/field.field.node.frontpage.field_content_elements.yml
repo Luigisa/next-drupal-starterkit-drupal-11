@@ -1,0 +1,76 @@
+uuid: 9ed8528b-05ac-4aa5-8a4a-48624ea856b7
+langcode: fi
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_content_elements
+    - node.type.frontpage
+    - paragraphs.paragraphs_type.accordion
+    - paragraphs.paragraphs_type.file_attachments
+    - paragraphs.paragraphs_type.formatted_text
+    - paragraphs.paragraphs_type.hero
+    - paragraphs.paragraphs_type.image
+    - paragraphs.paragraphs_type.liftups_articles
+    - paragraphs.paragraphs_type.links
+    - paragraphs.paragraphs_type.listing_articles
+    - paragraphs.paragraphs_type.video
+  module:
+    - entity_reference_revisions
+_core:
+  default_config_hash: nlfQNlz6ThvhQkrkr07TFcwc3YacRn5liyMGVu7RbJE
+id: node.frontpage.field_content_elements
+field_name: field_content_elements
+entity_type: node
+bundle: frontpage
+label: 'Content elements'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      hero: hero
+      formatted_text: formatted_text
+      image: image
+      links: links
+      accordion: accordion
+      video: video
+      listing_articles: listing_articles
+      file_attachments: file_attachments
+      liftups_articles: liftups_articles
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: -10
+        enabled: true
+      accordion_item:
+        weight: -12
+        enabled: false
+      file_attachments:
+        weight: 10
+        enabled: true
+      formatted_text:
+        weight: -14
+        enabled: true
+      hero:
+        weight: -15
+        enabled: true
+      image:
+        weight: -13
+        enabled: true
+      liftups_articles:
+        weight: 17
+        enabled: true
+      links:
+        weight: -11
+        enabled: true
+      listing_articles:
+        weight: 9
+        enabled: true
+      video:
+        weight: -9
+        enabled: true
+field_type: entity_reference_revisions

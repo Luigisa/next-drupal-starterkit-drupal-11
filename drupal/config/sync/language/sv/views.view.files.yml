@@ -1,0 +1,14 @@
+display:
+  default:
+    display_title: Förvald
+    display_options:
+      fields:
+        status:
+          label: Status
+      exposed_form:
+        options:
+          reset_button_label: Återställ
+      filters:
+        status:
+          expose:
+            label: Status

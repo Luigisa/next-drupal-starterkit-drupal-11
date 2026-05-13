@@ -1,0 +1,14 @@
+uuid: 71a8169e-db1c-435d-927a-15450be1eef3
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.frontend_login
+  module:
+    - user
+id: user_add_role_action.frontend_login
+label: 'Add the Frontend login user role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: frontend_login

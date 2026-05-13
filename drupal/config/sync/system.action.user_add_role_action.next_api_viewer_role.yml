@@ -1,0 +1,14 @@
+uuid: 464bcd8d-7588-4551-8004-6ea552138a6b
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.next_api_viewer_role
+  module:
+    - user
+id: user_add_role_action.next_api_viewer_role
+label: 'Add the API Viewer role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: next_api_viewer_role

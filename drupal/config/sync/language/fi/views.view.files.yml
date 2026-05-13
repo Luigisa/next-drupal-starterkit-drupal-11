@@ -1,0 +1,14 @@
+display:
+  default:
+    display_title: Oletus
+    display_options:
+      fields:
+        status:
+          label: Tila
+      exposed_form:
+        options:
+          reset_button_label: Palauta
+      filters:
+        status:
+          expose:
+            label: Tila

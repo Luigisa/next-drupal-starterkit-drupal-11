@@ -1,0 +1,38 @@
+uuid: f0665a79-15ad-4fde-bcc4-be860bdade8c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.article.body
+    - field.field.node.article.field_excerpt
+    - field.field.node.article.field_image
+    - field.field.node.article.field_tags
+    - node.type.article
+  module:
+    - user
+_core:
+  default_config_hash: iUwhOlK5Qpn5tmlWdstEuk_ZkQh-OCmP7QCLwGbDCeo
+id: node.article.default
+targetEntityType: node
+bundle: article
+mode: default
+content:
+  preview_token:
+    type: preview_token_iframe
+    label: hidden
+    settings:
+      iframe_url: '[wunder_next:frontend-url]/[language:prefix]/nodepreview?path=[node:preview:url]'
+      class: ''
+      width: 100%
+      height: '900'
+      allow: 'fullscreen autoplay'
+      transparency: '1'
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  body: true
+  field_excerpt: true
+  field_image: true
+  field_tags: true
+  links: true

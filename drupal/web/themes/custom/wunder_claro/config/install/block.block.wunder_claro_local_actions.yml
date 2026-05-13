@@ -1,0 +1,18 @@
+uuid: 5f8b028f-7c5a-4767-9a04-3364ce4647f4
+langcode: en
+status: true
+dependencies:
+  theme:
+    - wunder_claro
+id: wunder_claro_local_actions
+theme: wunder_claro
+region: content
+weight: -10
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

@@ -1,0 +1,65 @@
+uuid: 24266c32-863f-45e5-b37b-e3d31fadf736
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_content_elements
+    - paragraphs.paragraphs_type.accordion_item
+    - paragraphs.paragraphs_type.file_attachments
+    - paragraphs.paragraphs_type.formatted_text
+    - paragraphs.paragraphs_type.image
+    - paragraphs.paragraphs_type.links
+    - paragraphs.paragraphs_type.video
+  module:
+    - entity_reference_revisions
+_core:
+  default_config_hash: rvRFoQuDM9bp1O6QAnIolJT3tgoQB5In5jiHlOSRqUU
+id: paragraph.accordion_item.field_content_elements
+field_name: field_content_elements
+entity_type: paragraph
+bundle: accordion_item
+label: 'Content elements'
+description: 'Add one or more paragraphs to display in this accordion item.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      formatted_text: formatted_text
+      image: image
+      links: links
+      file_attachments: file_attachments
+      video: video
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 7
+        enabled: false
+      accordion_item:
+        weight: 8
+        enabled: false
+      file_attachments:
+        weight: 12
+        enabled: true
+      formatted_text:
+        weight: 9
+        enabled: true
+      hero:
+        weight: 14
+        enabled: false
+      image:
+        weight: 10
+        enabled: true
+      links:
+        weight: 11
+        enabled: true
+      listing_articles:
+        weight: 17
+        enabled: false
+      video:
+        weight: 12
+        enabled: true
+field_type: entity_reference_revisions

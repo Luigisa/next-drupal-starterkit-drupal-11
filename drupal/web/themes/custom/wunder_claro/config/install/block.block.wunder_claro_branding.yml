@@ -1,0 +1,23 @@
+uuid: c0edaa7f-8ed0-4c1d-9385-f90a1c6ad3d8
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - wunder_claro
+id: wunder_claro_branding
+theme: wunder_claro
+region: header
+weight: 0
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility: {  }

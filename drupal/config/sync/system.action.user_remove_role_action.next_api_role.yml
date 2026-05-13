@@ -1,0 +1,14 @@
+uuid: 497016be-37d5-489d-b3a6-5d275e0af0f5
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.next_api_role
+  module:
+    - user
+id: user_remove_role_action.next_api_role
+label: 'Remove the API Previewer role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: next_api_role

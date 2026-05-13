@@ -1,0 +1,22 @@
+uuid: 1e7e2b54-a812-475b-85bf-53ced4b601b1
+langcode: en
+status: false
+dependencies:
+  theme:
+    - wunder_claro
+_core:
+  default_config_hash: uHMGAA3v_niuo5Fn9QzgjC76xwnsxd1SY-esyja66_I
+id: wunder_claro_local_tasks
+theme: wunder_claro
+region: content
+weight: -20
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }

@@ -1,0 +1,20 @@
+uuid: efd19138-c581-4a6e-890f-ea196b0627c1
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - wunder_claro
+id: wunder_claro_help
+theme: wunder_claro
+region: help
+weight: 0
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility: {  }

@@ -1,0 +1,26 @@
+display:
+  default:
+    display_options:
+      exposed_form:
+        options:
+          reset_button_label: Återställ
+      fields:
+        view_webform_submission:
+          label: Funktioner
+  embed_administer:
+    display_options:
+      fields:
+        operations:
+          label: Funktioner
+  embed_manage:
+    display_options:
+      fields:
+        view_webform_submission:
+          label: Funktioner
+        edit_webform_submission:
+          label: Funktioner
+  embed_review:
+    display_options:
+      fields:
+        view_webform_submission:
+          label: Funktioner

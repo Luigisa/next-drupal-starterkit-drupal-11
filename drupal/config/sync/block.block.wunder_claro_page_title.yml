@@ -1,0 +1,20 @@
+uuid: 03e99f03-c5ee-49da-91ea-bb2eef48ea93
+langcode: en
+status: true
+dependencies:
+  theme:
+    - wunder_claro
+_core:
+  default_config_hash: Xxz9zvWrRTuAME5N0fT8Bj0XA_TRKjIDR8b85EIQcx8
+id: wunder_claro_page_title
+theme: wunder_claro
+region: header
+weight: -30
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility: {  }

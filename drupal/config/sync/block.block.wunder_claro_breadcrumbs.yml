@@ -1,0 +1,22 @@
+uuid: 824380a1-7130-4f47-88cc-9f480000f7eb
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - wunder_claro
+_core:
+  default_config_hash: D7RYTZRhTlddiOd18Hx1aWqwI33eokZaOzQTw38wLE8
+id: wunder_claro_breadcrumbs
+theme: wunder_claro
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

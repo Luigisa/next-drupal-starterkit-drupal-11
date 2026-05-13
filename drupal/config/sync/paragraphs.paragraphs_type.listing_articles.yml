@@ -1,0 +1,12 @@
+uuid: 27969c04-2b7c-4b1c-a0b7-2fba36bc01e7
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: Iw818MNgOZFLmoDZhlFB-oAP-HeJ_c2Bhx4mfi-8v-w
+id: listing_articles
+label: 'Listing: articles'
+icon_uuid: null
+icon_default: null
+description: 'Renders a listing of articles in the frontend.'
+behavior_plugins: {  }

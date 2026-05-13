@@ -1,0 +1,24 @@
+uuid: fcce6937-beb7-4b18-93ca-7cd48d890dc7
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.formatted_text
+_core:
+  default_config_hash: OjxOZa_CM2uP6skbyVTHvw34ei7ZgjiUU5ai9Rj73CE
+id: paragraph.formatted_text.status
+field_name: status
+entity_type: paragraph
+bundle: formatted_text
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

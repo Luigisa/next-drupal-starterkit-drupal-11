@@ -1,0 +1,80 @@
+uuid: 3a55d465-1026-49d9-83e0-77e2f4a1b9a2
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.audio
+    - media.type.document
+    - media.type.image
+    - media.type.remote_video
+    - media.type.video
+    - node.type.page
+  module:
+    - content_translation
+    - media
+    - node
+    - path
+    - system
+    - toolbar
+_core:
+  default_config_hash: 1tC8JQEb21l3G7vINA4NcKFFk_M7V3Z842d9zrWcFww
+id: wunder_content_editor
+label: 'Wunder content editor'
+weight: 5
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access content overview'
+  - 'access media overview'
+  - 'access toolbar'
+  - 'administer url aliases'
+  - 'create audio media'
+  - 'create document media'
+  - 'create image media'
+  - 'create media'
+  - 'create page content'
+  - 'create remote_video media'
+  - 'create url aliases'
+  - 'create video media'
+  - 'delete all revisions'
+  - 'delete any audio media'
+  - 'delete any document media'
+  - 'delete any image media'
+  - 'delete any media'
+  - 'delete any page content'
+  - 'delete any remote_video media'
+  - 'delete any video media'
+  - 'delete media'
+  - 'delete own audio media'
+  - 'delete own document media'
+  - 'delete own image media'
+  - 'delete own page content'
+  - 'delete own remote_video media'
+  - 'delete own video media'
+  - 'edit any audio media'
+  - 'edit any document media'
+  - 'edit any image media'
+  - 'edit any page content'
+  - 'edit any remote_video media'
+  - 'edit any video media'
+  - 'edit own audio media'
+  - 'edit own document media'
+  - 'edit own image media'
+  - 'edit own page content'
+  - 'edit own remote_video media'
+  - 'edit own video media'
+  - 'revert all revisions'
+  - 'revert page revisions'
+  - 'translate audio media'
+  - 'translate document media'
+  - 'translate image media'
+  - 'translate remote_video media'
+  - 'translate video media'
+  - 'update any media'
+  - 'update media'
+  - 'view all media revisions'
+  - 'view all revisions'
+  - 'view own unpublished content'
+  - 'view own unpublished media'
+  - 'view page revisions'
+  - 'view the administration theme'

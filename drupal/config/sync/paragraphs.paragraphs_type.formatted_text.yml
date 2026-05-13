@@ -1,0 +1,12 @@
+uuid: e2c0af9b-4e0b-4cab-924e-d87f4333145b
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 22OwNU5EdAFP2E5Wxv2Ii3uzusZwkGhn8U2_efMeT5o
+id: formatted_text
+label: 'Formatted text'
+icon_uuid: null
+icon_default: null
+description: 'A paragraph containing formatted text'
+behavior_plugins: {  }

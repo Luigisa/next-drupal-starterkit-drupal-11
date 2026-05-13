@@ -1,0 +1,21 @@
+uuid: 9e655c6e-20c9-4ff1-9b74-331b3c7d9595
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_excerpt
+    - node.type.page
+_core:
+  default_config_hash: uQykPWOku3a8x9Q5Z0g1ObBRSVoi6gXOMRtz82iB29E
+id: node.page.field_excerpt
+field_name: field_excerpt
+entity_type: node
+bundle: page
+label: Excerpt
+description: 'Add an excerpt for this piece of content. It will also be used for search results and HTML meta tags.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

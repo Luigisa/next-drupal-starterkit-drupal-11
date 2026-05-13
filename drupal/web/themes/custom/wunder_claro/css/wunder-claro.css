@@ -2,13 +2,10 @@
  * @file
  * Estilos del subtema Wunder Claro (admin / backend).
  *
- * Sobrescribe o complementa Claro; prioridad baja — usa especificidad o
- * libraries-override en wunder_claro.libraries.yml si hace falta.
+ * Añade reglas aquí o declara otras librerías en wunder_claro.libraries.yml.
  */
 
-/* Ejemplo: ligera marca visual para comprobar que el tema carga */
-.toolbar-oriented .dialog-off-canvas-main-canvas {
-  /* Sin cambios forzados por defecto; descomenta para prueba:
-  outline: 1px dashed rgba(0, 0, 0, 0.06);
-  */
+/* Punto de partida (evita hoja totalmente vacía en algunos linters). */
+:root {
+  /* --wunder-claro-accent: #0d77b6; */
 }

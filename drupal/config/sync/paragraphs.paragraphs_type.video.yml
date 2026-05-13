@@ -1,0 +1,12 @@
+uuid: edcfa9e8-d529-4626-bdd5-64e4399ee080
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: _2aZOT58PFRqZOgWNLaTzeyKQp_8Z3VOIb0SOgvqz28
+id: video
+label: Video
+icon_uuid: null
+icon_default: null
+description: 'Paragraph containing a video'
+behavior_plugins: {  }

@@ -1,0 +1,13 @@
+uuid: 45b601bd-5bf7-4a7b-9b60-21984e988170
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: aHWvkV71DhcLpQI5PvlExriITqsqXTTrBT9B2ONEdtc
+id: frontend
+label: 'Next.js frontend'
+base_url: 'http://localhost:3000'
+preview_url: 'http://localhost:3000/api/draft'
+preview_secret: null
+revalidate_url: 'http://localhost:3000/api/revalidate'
+revalidate_secret: null

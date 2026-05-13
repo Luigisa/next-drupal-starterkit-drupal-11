@@ -1,0 +1,14 @@
+uuid: 51f75664-26e6-47be-962a-8b4900234a26
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.next_api_viewer_role
+  module:
+    - user
+id: user_remove_role_action.next_api_viewer_role
+label: 'Remove the API Viewer role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: next_api_viewer_role
